@@ -51,6 +51,8 @@ export default class WorkOrderCustomUI extends NavigationMixin(LightningElement)
     connectedCallback() {
         this.columns = [
             { label: 'Name', fieldName: 'Name' },
+            //added as a part of Modification Check_Attachment__c
+            { label: 'check Attachment', fieldName: 'Check_Attachment__c', editable: true,type : 'boolean' },
             { label: 'Line Quantity', fieldName: 'SVMXC__Actual_Quantity2__c', editable: true },
             {
                 label: 'Line Type ', fieldName: 'SVMXC__Line_Type__c', wrapText: true, type: 'picklist', typeAttributes: {
@@ -74,10 +76,11 @@ export default class WorkOrderCustomUI extends NavigationMixin(LightningElement)
         if (result.data) {
             //if length === 0 don't show child lines 
             if (result.data.length == 0) {
+                this.isLoading =true; //if no lines found then show header instead of spinner 
                 this.ChildLinesFound = false;
             }
             else {
-                this.isLoading =true;
+                this.isLoading =true; //if lines found then show header and lines both instead of spinner 
                 this.ChildLinesFound = true;
                 this.WDListToDisplayOnUi = result.data;
                 this.lastSavedData = JSON.parse(JSON.stringify(this.WDListToDisplayOnUi));

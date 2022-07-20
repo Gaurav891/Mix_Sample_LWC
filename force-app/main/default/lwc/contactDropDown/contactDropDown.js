@@ -1,5 +1,5 @@
 import { LightningElement,api ,track,wire  } from 'lwc';
-import getContacts from '@salesforce/apex/ContactManager.getContactList';
+//import getContacts from '@salesforce/apex/ContactManager.getContactList';
 import getAllContacts from '@salesforce/apex/ContactManager.getContactAllList';
 
 const COLUMNS = [
@@ -121,7 +121,7 @@ handleKeyChange(event)
       this.noRecordFound =true;
       const allCon = this.allContactList;
       const contcatListNew = allCon.filter(Contact => Contact.LastName.toLowerCase().includes(key));
-     // after filter check The collection ,weather contact Matches
+     // after filter check The collection ,weather any contact Matches
      if(contcatListNew.length >0)
      {
       this.noRecordFound =true;
@@ -169,6 +169,9 @@ handleKeyChange(event)
 handleRowSelection(event)
 {
 
+  //inform Parent Contact Got selected 
+  //send the data for backend process
+
     
     var selectedRows=event.detail.selectedRows;
     this.searchKey = selectedRows[0].LastName;
@@ -188,7 +191,7 @@ handleRowSelection(event)
     this.noRecordFoundMessage ='';
 
 
-    //inform Parent that Contact Seleted Again 
+    //inform Parent that Contact Seleted Again end 
 
 
 }

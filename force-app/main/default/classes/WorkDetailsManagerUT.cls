@@ -25,7 +25,7 @@ private class WorkDetailsManagerUT {
 
         test.startTest();
         WorkDetailsManager.fetchWd(wo.id);
-        ContactManager.getContactAllList(con.id);
+        ContactManager.getContactAllList(acc.id);
         test.stopTest();
 
     }
