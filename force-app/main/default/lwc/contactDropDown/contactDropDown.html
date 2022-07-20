@@ -1,0 +1,42 @@
+<template>
+  <div class="slds-form-element">  
+    <label class="slds-form-element__label" for="combobox-id-2">Contact</label>  
+    <div class="slds-form-element__control">  
+      <div class="slds-combobox_container">  
+        <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open" aria-expanded="true" aria-haspopup="listbox" role="combobox">  
+            <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+              <lightning-icon onclick={clearSearchBox} size="x-small" class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default" 
+              icon-name={dynamicIcon}></lightning-icon>
+              
+                <input type="text" onfocusout={onLeave} value={searchKey} onkeyup={handleKeyChange} 
+                onchange={handleKeyChange} onclick={checkOnclick}
+                 class="slds-input slds-combobox__input slds-has-focus" id="combobox-id-2" aria-autocomplete="list" 
+                 aria-controls="listbox-id-2" role="textbox" placeholder="Search..." />  
+            </div>
+   
+          <template if:true={noRecordFound}>
+          <template if:true={recordsList}> 
+          <div id="listbox-id-2-venu" data-key="dropdownresult" class="slds-show slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox">  
+            <ul class="slds-listbox slds-listbox_vertical" role="presentation" >  
+            
+              <lightning-datatable
+              max-row-selection  ='1'
+              key-field="id"
+              data={recordsList}
+              columns={columns}
+              onrowselection={handleRowSelection}>
+      </lightning-datatable>
+            </ul>  
+          </div>  
+          </template> 
+        </template><!-- end -->
+        <template if:false={noRecordFound}>
+           {noRecordFoundMessage}
+        </template>
+          
+          
+        </div>  
+      </div>  
+    </div>  
+  </div>  
+</template>

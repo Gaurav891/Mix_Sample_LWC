@@ -1,0 +1,83 @@
+<template>
+    <template if:false={isLoading}>
+    <!-- show Loading -->
+    <lightning-spinner alternative-text="Loading" variant="brand" size="large">
+    </lightning-spinner>
+    </template>
+    <template if:true={isLoading}>
+      <!--show data -->
+<lightning-card title={woNumber} >
+        <div class="slds-var-m-around_xx-large">
+                <!--Header layout start-->
+                <div class="slds-var-m-bottom_medium">
+                  <b>Section Header</b>
+                  </div>
+               <lightning-layout>
+                <lightning-layout-item size="6" class="slds-var-m-right_medium">
+                 <lightning-input type ='text' name="WoName"  label="Name" value={WOname} readonly></lightning-input>
+                 <lightning-input type="text" name="WoStatus"  label="Status" value={WOstatus} readonly></lightning-input>
+                 <!--show priority start -->
+                 <lightning-combobox
+                 name="WorkOrderPriority"
+                 label="Priority"
+                 value={WOpriority}
+                 placeholder="--Select--"
+                 options={prorityPicklist}
+                 onchange={storeWoPriority} ></lightning-combobox>
+                 <!--show priority end-->
+                    </lightning-layout-item>
+                    <lightning-layout-item size="6" class="slds-var-m-left_medium">
+     <lightning-input type="text" name="Acc"  label="Account" value={AccountName} readonly></lightning-input>
+                  <!--contact drop down start based On Account-->
+                   <!--add null check what if no account is On Work order field -->
+                  <c-contact-drop-down account-id ={AccountId} search-key={contactName} keyy={contactName}
+                   oncontactselected ={contactSelectedFromDropDown}
+                   oncontactdeselected={clearPhoneField}></c-contact-drop-down>
+
+                  <!--contact drop down end-->
+                  <lightning-input type="text" name="ContactPhone"  label="Contact phone" value={contactPhone} 
+                   ></lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <!--Header layout end-->
+                <!--child lines start-->
+                 <!-- conditional rerendering -->
+                <template if:true={ChildLinesFound}>
+                <div class="slds-var-m-top_large">
+
+                  <b>Section child</b>
+                  </div>
+                  <!--call child component which will display child lines in dataTable and 
+                       customTypes -->
+                  <div>
+                    <!--extended data table workLike a dataTable-->
+                    <c-extended-data-table 
+                    key-field="Id" 
+                     data={WDListToDisplayOnUi} 
+                     columns={columns} 
+                     onpicklistchanged={picklistChanged} 
+                     onvalueselect={handleSelection}
+                     draft-values={draftValues} 
+                     oncellchange={handleCellChange}
+                     onsave={handleSave}
+                     oncancel={handleCancel}
+                     hide-checkbox-column>
+                    ></c-extended-data-table>  
+                    </div>
+                    <!--call child component end -->
+
+                  </template>
+                <!--chid lines end-->
+
+                <!-- save and cancel button start -->
+               <div class="slds-var-m-top_medium slds-float_right slds-var-m-around_large">
+                <lightning-button-group> 
+                <lightning-button label="cancel" variant="Brand"    onclick={cancelAndNavigationToOldPage}  ></lightning-button>
+                <lightning-button label="Save" variant="Brand" onclick={saveDataToDatabase} class="slds-var-m-left_small"></lightning-button>
+                </lightning-button-group>
+                </div>
+                 <!-- save and cancel button end -->   
+            </div>
+        </lightning-card>
+      </template>
+</template>
