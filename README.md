@@ -7,8 +7,9 @@
 # DESCRIPTION SVMX SFM_UI : 
 
 
-# Images : <img src="images/SfmUi.JPG" width="650" height="400" >
-
+# Images :
+          <img src="images/SfmUi.JPG" width="450" height="250" >              <img src="images/SfmUi.JPG" width="450" height="250" >
+          <img src="images/SfmUi.JPG" width="450" height="250" >             <img src="images/SfmUi.JPG" width="450" height="250" >
     
 
      Project Description : 
