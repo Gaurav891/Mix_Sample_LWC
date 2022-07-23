@@ -1,7 +1,10 @@
 
-Description of Projects  available in this Repo
+# List of Projects available in this Repo
+1. svmx sfm_ui
+2. Property finder
+
  
-# SVMX SFM_UI 
+# DESCRIPTION SVMX SFM_UI : 
 
 
 # Images : <img src="images/SfmUi.JPG" width="650" height="400" >
@@ -34,7 +37,7 @@ Description of Projects  available in this Repo
     
     
     
-#  Propery Founder :->
+# DESCRIPTION Property  Finder : 
      
      
 
