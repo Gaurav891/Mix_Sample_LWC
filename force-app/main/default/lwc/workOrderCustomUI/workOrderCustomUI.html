@@ -34,10 +34,9 @@
                   <c-contact-drop-down account-id ={AccountId} search-key={contactName} keyy={contactName}
                    oncontactselected ={contactSelectedFromDropDown}
                    oncontactdeselected={clearPhoneField}></c-contact-drop-down>
-
                   <!--contact drop down end-->
                   <lightning-input type="text" name="ContactPhone"  label="Contact phone" value={contactPhone} 
-                   ></lightning-input>
+                  readonly></lightning-input>
                     </lightning-layout-item>
                 </lightning-layout>
                 <!--Header layout end-->
@@ -45,11 +44,11 @@
                  <!-- conditional rerendering -->
                 <template if:true={ChildLinesFound}>
                 <div class="slds-var-m-top_large">
-
                   <b>Section child</b>
                   </div>
                   <!--call child component which will display child lines in dataTable and 
                        customTypes -->
+                       <!--add spinner for child table -->
                   <div>
                     <!--extended data table workLike a dataTable-->
                     <c-extended-data-table 
@@ -57,16 +56,17 @@
                      data={WDListToDisplayOnUi} 
                      columns={columns} 
                      onpicklistchanged={picklistChanged} 
-                     onvalueselect={handleSelection}
-                     draft-values={draftValues} 
+                     suppress-bottom-bar="true"
                      oncellchange={handleCellChange}
-                     onsave={handleSave}
-                     oncancel={handleCancel}
+                     draft-values={draftValues} 
                      hide-checkbox-column>
                     ></c-extended-data-table>  
                     </div>
+                    <!-- onsave={handleSave}
+                    oncancel={handleCancel} 
+                  onvalueselect={handleSelection} -->
                     <!--call child component end -->
-
+                  <!--spinner if end -->
                   </template>
                 <!--chid lines end-->
 

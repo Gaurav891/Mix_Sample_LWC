@@ -1,0 +1,58 @@
+<template>
+    <lightning-card>
+    <div class="slds-var-m-around_medium">
+    <!-- \(984\)-558-4621 
+         
+    -->
+    <lightning-input
+        type="phone"
+        name="Phone"
+        label ="Enter Phone"
+        onchange={trackPhone}
+        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}$" 
+        message-when-pattern-mismatch="Please enter a valid phone"
+        required 
+       ></lightning-input>
+    <lightning-input
+     type="email"
+     name="email"
+     label ="Enter"
+     onchange={trackEmail}
+     pattern="[A-Za-z0-9._-]+@[a-z0-9-]+\.[a-z]{2,}$" 
+     message-when-pattern-mismatch="Please enter a valid Email"
+     required 
+    ></lightning-input>
+
+
+
+
+
+
+
+
+
+
+
+
+         <!--Validation for combobox start -->
+        <lightning-combobox
+        name=" Validation to combobvox"
+                 label="Validatin testing"
+                 value={comBoVal}
+                 placeholder="--Select--"
+                 options={optionsCombo}
+                 onchange={comBoChange}
+                 required
+        ></lightning-combobox>
+        </div>
+
+        <lightning-button
+        label="Check Alert"
+        variant="Brand"
+        onclick={checkOnSave}
+        
+        ></lightning-button>
+
+
+    </lightning-card>
+</template>

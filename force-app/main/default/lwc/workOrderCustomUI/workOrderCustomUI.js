@@ -34,6 +34,7 @@ export default class WorkOrderCustomUI extends NavigationMixin(LightningElement)
     contactChanged = false;
     UpdatedContactId;
     closeIconClicked =false ;
+    loadingForChildLines =true;
 
     @wire(getRecord, {
         recordId: '$recordId', fields: [WO_NAME_FIELD
@@ -174,69 +175,166 @@ export default class WorkOrderCustomUI extends NavigationMixin(LightningElement)
         );
     }
     saveDataToDatabase() {
-      
+     /*code to update Header and Child updated as feedBack 
+     child Update and Header Update should Happen in One Click 
+     */
+     var  errorOcurredInChildUpdate = false;
+     var  errorOcurredInHeaderUpdate =false;
+
+     if(this.ChildLinesFound){ //child line exist Or not 
+ 
+     //code to get All draft Value in dataTable component 
+     let draftVal = this.template.querySelector('c-extended-data-table').draftValues;
+     console.log('all Updated Value  ',draftVal);
+
+     //code added for the Validation of child line Type 
+     //reduce Method 
+     //get All line types in A collection from the draft Value
+     var allTypesCollect = draftVal.map(item => item["SVMXC__Line_Type__c"]);
+     console.log('check all lines ',allTypesCollect);
+     //includes method return true if given argument is Present in Array
+     var partsFound = allTypesCollect.includes('Parts')
+     console.log('check all lines boolean ',partsFound);
+     if(partsFound)
+     {
+        //throw notification 
+        //show notification one One Or more Error and don't allow  navigate 
+        this.dispatchEvent(
+            new ShowToastEvent({
+                title: 'Error Occured ',
+                message: 'Page Contains One or More Error ',
+                variant: 'error'
+            })
+        );
+        return ''; //just to stop the execution 
+
+     }
+     //validation end if found Parts execution stop 
+     // Convert datatable draft values into record objects
+      const records = draftVal.slice().map((draftValue) => {
+        const fields = Object.assign({}, draftValue);
+        return { fields };
+      });
+
+       //Use tryCatch to Update Child record 
+      try {
+        // Update all records in parallel thanks to the UI API
+        const recordUpdatePromises = records.map((record) =>
+            updateRecord(record)
+        );
+         Promise.all(recordUpdatePromises).then(record  => {
+            refreshApex(this.ListToRefreshApex);
+           
+            errorOcurredInChildUpdate =false;
        
-        const Picklist = this.template.querySelector("lightning-combobox").value;
-        const ContactPhoneUpdated = this.template.querySelectorAll("lightning-input")[3].value;
-        const woId = this.recordId;
-        //use ternaray Operator to get latest contact seclected 
-        // contactChanged === TRUE ,Means dataBase Value Changed 
-        const contactID = this.contactChanged === true ? this.UpdatedContactId : this.contactNameBackend;
+          });
+         
 
-        console.log('save button clicked picklist  ',Picklist)
-        console.log('save button clicked  phone ',ContactPhoneUpdated)
-        console.log('save button clicked workOrdeId  ',woId)
-        console.log('save button clicked  contcat ',contactID)
+    } catch (error) {
+        //if this Block executes then updated value have some error 
+        errorOcurredInChildUpdate =true;
+        
+    } 
 
-     const fields = {};
-     fields[WO_ID_FIELD.fieldApiName] = woId;
-     fields[WO_PRIORITY_FIELD.fieldApiName] = Picklist;
-     fields[WO_CONTACT_FIELD_ID.fieldApiName] =  this.closeIconClicked ===true ? null : contactID ; //if value not changed then it will give older val 
-     fields[WO_CONTACT_PHONE_FIELD.fieldApiName] = this.closeIconClicked ===true ? null : ContactPhoneUpdated ;          // ContactPhoneUpdated;
-    
-     console.log('fields to Update ',fields);
-     const recordInput = { fields };
-    //use the lds function to Update record 
-     updateRecord(recordInput).then(() =>{
-      //show notification
-      this.dispatchEvent(
-         new ShowToastEvent({
-             title: 'Success',
-             message: `Record ${this.recordId} updated Successfully `,
-             variant: 'success'
-         })
-     );
-      
-      //navigate the user to record Page 
-      //code to navigate to the record  Page 
-     this[NavigationMixin.Navigate](
-         {
-             type : 'standard__recordPage',
-             attributes : {
-              recordId : this.recordId,
-              objectApiName :'SVMXC__Service_Order__c',
-              actionName :'view'
+     } //child lines if end 
+
+
+    //code to Update Header Record start
+    const Picklist = this.template.querySelector("lightning-combobox").value;
+    const ContactPhoneUpdated = this.template.querySelectorAll("lightning-input")[3].value;
+    const woId = this.recordId;
+    //use ternaray Operator to get latest contact seclected 
+    // contactChanged === TRUE ,Means dataBase Value Changed 
+    const contactID = this.contactChanged === true ? this.UpdatedContactId : this.contactNameBackend;
+
+    console.log('save button clicked check picklist  ',Picklist)
+    console.log('save button clicked check phone ',ContactPhoneUpdated)
+    console.log('save button clicked check  workOrdeId  ',woId)
+    console.log('save button clicked  check contcat ',contactID)
+
+         const fields = {};
+         fields[WO_ID_FIELD.fieldApiName] = woId;
+         fields[WO_PRIORITY_FIELD.fieldApiName] = Picklist;
+         fields[WO_CONTACT_FIELD_ID.fieldApiName] =  this.closeIconClicked ===true ? null : contactID ; //if value not changed then it will give older val 
+         fields[WO_CONTACT_PHONE_FIELD.fieldApiName] = this.closeIconClicked ===true ? null : ContactPhoneUpdated ;          // ContactPhoneUpdated;
+
+         console.log('fields to Update ',fields);
+         const recordInput = { fields };
+         updateRecord(recordInput).then(() =>{
+         //boolean will tell no error occured while Updating Parent record 
+         errorOcurredInHeaderUpdate  =false;
+
+          }).catch(() =>{
+         //boolean will tell error occured while Updating Parent record 
+         errorOcurredInHeaderUpdate =true;
+
+           }) 
+
+     //code to Update Header Record end 
+
+     //navigate and notification end
+     console.log('tell about child ',errorOcurredInChildUpdate);
+     console.log('tell about header ',errorOcurredInHeaderUpdate);
+     if(!errorOcurredInHeaderUpdate && !errorOcurredInChildUpdate)
+     {
+         //if both are false  then allow to navigate and show success notification 
+         //notification 
+         this.dispatchEvent(
+            new ShowToastEvent({
+                title: 'Success',
+                message: `Record  ${this.recordId} updated Successfully `,
+                variant: 'success'
+            })
+        );
+        //navigation 
+        this[NavigationMixin.Navigate](
+            {
+                type : 'standard__recordPage',
+                attributes : {
+                 recordId : this.recordId,
+                 objectApiName :'SVMXC__Service_Order__c',
+                 actionName :'view'
+                }
              }
-          }
-         );
-       
- 
-    }).catch(() =>{
-    
-     // show toast with error message 
-     this.dispatchEvent(
-         new ShowToastEvent({
-             title: 'Something is wrong',
-             message: `Error Occured While Updating Record ${this.recordId} `,
-             variant: 'error'
-         })
-      );
- 
- 
-    }) 
+            );
 
 
+     }
+     else if(errorOcurredInHeaderUpdate && errorOcurredInChildUpdate )
+     {
+         //show notification one One Or more Error //don't navigate 
+         this.dispatchEvent(
+            new ShowToastEvent({
+                title: 'Error while updating or refreshing records',
+                message: 'error occured',
+                variant: 'error'
+            })
+        );
+     }
+     else if(errorOcurredInHeaderUpdate)
+     {
+          //show errror occured in Parent //don't allow to naviagte 
+          this.dispatchEvent(
+            new ShowToastEvent({
+                title: 'Error while updating or refreshing header  records',
+                message: 'error occured',
+                variant: 'error'
+            })
+        );
 
+     }
+     else if(errorOcurredInChildUpdate)
+     {
+           //show errror occured in child  //don't allow to naviagte 
+           this.dispatchEvent(
+            new ShowToastEvent({
+                title: 'Error while updating or refreshing child records',
+                message: 'error occured',
+                variant: 'error'
+            })
+        );
+     }
+     //navigate and notification end
     }
     //methods added for chid dataTable Actions 
     handleSelection() {
@@ -261,57 +359,15 @@ export default class WorkOrderCustomUI extends NavigationMixin(LightningElement)
         }
     }
     picklistChanged(event) {
-       
         event.stopPropagation(); //it use to stop the Propogation that bubble from the child 
 
         let dataRecieved = event.detail.data; //it will return a Object with attributes : ID in Context and Priority in Value ,
         let updatedItem = { Id: dataRecieved.context, SVMXC__Line_Type__c: dataRecieved.value }; //Rating to Priority 
+        //handle Error here 
         this.updateDraftValues(updatedItem); //Update the dreaft Value send the argument as Object 
     }
     handleCellChange(event) {
         this.updateDraftValues(event.detail.draftValues[0]);
-    }
-    async handleSave(event) {
-        //save last saved copy
-        this.lastSavedData = JSON.parse(JSON.stringify(this.WDListToDisplayOnUi));
-        // Convert datatable draft values into record objects
-        const records = event.detail.draftValues.slice().map((draftValue) => {
-            const fields = Object.assign({}, draftValue);
-            return { fields };
-        });
-        // Clear all datatable draft values
-        this.draftValues = [];
-        try {
-            // Update all records in parallel thanks to the UI API
-            const recordUpdatePromises = records.map((record) =>
-                updateRecord(record)
-            );
-            await Promise.all(recordUpdatePromises);
-
-            // Report success with a toast
-            this.dispatchEvent(
-                new ShowToastEvent({
-                    title: 'Success',
-                    message: 'Lines  updated',
-                    variant: 'success'
-                })
-            );
-
-            // Display fresh data in the datatable
-            return refreshApex(this.ListToRefreshApex);
-        } catch (error) {
-            this.dispatchEvent(
-                new ShowToastEvent({
-                    title: 'Error while updating or refreshing records',
-                    message: 'error occured',
-                    variant: 'error'
-                })
-            );
-        }
-    }
-    handleCancel(event) {
-        this.WDListToDisplayOnUi = JSON.parse(JSON.stringify(this.lastSavedData));
-        this.draftValues = [];
     }
     clearPhoneField(event) {
         console.log('clear Phone field and contact ');

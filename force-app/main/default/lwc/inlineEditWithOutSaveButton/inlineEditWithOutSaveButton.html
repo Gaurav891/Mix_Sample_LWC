@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="Inline Edit WithOut Save">
+     <div class="slds-var-m-around_large">
+
+         <template if:true={ChildLinesFound}>
+        <lightning-datatable
+        key-field="Id" 
+        data={WDListToDisplayOnUi} 
+        columns={columns} 
+        oncellchange={handleCellChange}
+        draft-values={draftValues} 
+        suppress-bottom-bar="true"
+        >
+            </lightning-datatable>
+</template>
+
+            <lightning-button label="Save data"
+             onclick={handleSave}></lightning-button>
+        </div>    
+    </lightning-card>
+</template>

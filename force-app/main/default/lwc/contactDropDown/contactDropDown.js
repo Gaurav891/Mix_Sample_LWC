@@ -60,13 +60,15 @@ renderedCallback()
       console.log('search key in renderedCall Back  ',this.searchKey);
       console.log('boolean ',this.searchKey === '');
       // Modification for icon during OnLoad 
-      if(this.searchKey === '' )
+      this.dynamicIcon = this.searchKey === '' ? 'utility:search' : 'utility:close' ;
+
+    /*  if(this.searchKey === '' )
       {
         this.dynamicIcon = 'utility:search'
       }
       else{
           this.dynamicIcon = 'utility:close'
-      }
+      }*/
 
 
 }
@@ -112,6 +114,9 @@ handleKeyChange(event)
 {
   
     //make an imperative call 
+
+    console.log('check Space withOut trim ',event.target.value.length);
+    console.log('check Space with trim ',event.target.value.trim().length);
     if(event.target.value.length >0)
     {
      this.searchKey = event.target.value;
@@ -142,29 +147,6 @@ handleKeyChange(event)
     {
       this.searchBoxEmpty();
     }
-
-    //old code 
-    // this.searchKey =event.target.value;
-  /*  getContacts({ searchKey: this.searchKey, accountId : this.accountId })  
-    .then((result) => {  
-     if (result.length===0) {  
-       this.recordsList = [];  
-       this.noRecordFound =false;
-       this.noRecordFoundMessage ='No record Found ';
-      
-      } else {  
-        this.noRecordFound =true;
-       this.recordsList = result;  
-      
-      }  
-     
-    })  
-    .catch((error) => {  
-     this.recordsList = undefined;  
-    }); */
-    
-    
-    /// old code 
 }  
 handleRowSelection(event)
 {
