@@ -7,9 +7,9 @@
 # DESCRIPTION SVMX SFM_UI : 
                     
 # Images : 
- # <img src="images/SfmUi.JPG" width="450" height="250" >              <img src="images/SfmUi.JPG" width="450" height="250" >
+ # <img src="images/SfmUi.JPG" width="450" height="250" >      <img src="images/CaptureSfmUiErrorOpen.JPG" width="450" height="250" >        
  
- # <img src="images/SfmUiContactDropOpen.JPG" width="450" height="250" >     <img src="images/CaptureSfmUiErrorOpen.JPG" width="450" height="250" >
+ # <img src="images/SfmUiContactDropOpen.JPG" width="450" height="250" >     
 
          
               
