@@ -7,7 +7,11 @@ Description of Projects  available in this Repo
 
      Project Description : 
      This component is deployed as a custom action on a record Page ,which can be accessed as a quick action 
-     It is used to update the record and their chid object .
+     It is used to update the record and their chid record .
+     
+     OOTB functioonality : ->
+                             1.  custom LookUp field used 
+                             2.  custom types in lightning dataTable (Picklist)
  
      Component description : there are  total 4  LWC component Used to Developed the SFM_UI
                              1. WorkOrderCustomUI
