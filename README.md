@@ -4,7 +4,7 @@ Description of Projects  available in this Repo
 #1.  SFM_UI 
 
 
-   <img src="images/SfmUi.JPG" width="70" height="50" >
+   <img src="images/SfmUi.JPG" width="200" height="200" >
 
    ![component Image](images/SfmUi.JPG)
  
