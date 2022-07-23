@@ -5,13 +5,13 @@
 
  
 # DESCRIPTION SVMX SFM_UI : 
+                    
+# Images : 
+#1    <img src="images/SfmUi.JPG" width="450" height="250" >           #3    <img src="images/SfmUi.JPG" width="450" height="250" >
+#2    <img src="images/SfmUi.JPG" width="450" height="250" >           #4    <img src="images/SfmUi.JPG" width="450" height="250" >
 
-
-# Images :
-          <img src="images/SfmUi.JPG" width="450" height="250" >              <img src="images/SfmUi.JPG" width="450" height="250" >
-          <img src="images/SfmUi.JPG" width="450" height="250" >             <img src="images/SfmUi.JPG" width="450" height="250" >
-    
-
+         
+              
      Project Description : 
      This component is deployed as a custom action on a record Page ,which can be accessed as a quick action 
      It is used to update the record and their chid record .
