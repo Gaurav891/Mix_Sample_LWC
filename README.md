@@ -15,6 +15,7 @@ Description of Projects  available in this Repo
      OOTB functioonality : ->
                              1.  custom LookUp field used 
                              2.  custom types in lightning dataTable (Picklist)
+                             3.  custom validation 
  
      Component description : there are  total 4  LWC component Used to Developed the SFM_UI
                              1. WorkOrderCustomUI
@@ -30,7 +31,10 @@ Description of Projects  available in this Repo
                             1. dataSty
      
      
-     
+    
+    
+    
+#2.  Propery Founder :->
      
      
 
