@@ -163,7 +163,7 @@ export default class WorkOrderCustomUI extends NavigationMixin(LightningElement)
         console.log('Updated Phone 2', this.contactPhone);
     }
     cancelAndNavigationToOldPage() {
-        console.log('cancel button clicked Navigate to record Page ');
+        console.log('cancel button clicked Navigate to record Page '); 
         this[NavigationMixin.Navigate](
             {
                 type: 'standard__recordPage',
