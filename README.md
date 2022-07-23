@@ -1,4 +1,4 @@
-![SfmUi](https://user-images.githubusercontent.com/49844814/180596688-85ec542f-13a8-4d41-94bc-7f4aba10a8f3.JPG)
+
 Description of Projects  available in this Repo
 
 #1.  SFM_UI 
