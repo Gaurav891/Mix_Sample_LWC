@@ -2,6 +2,9 @@
 Description of Projects  available in this Repo
  
 #1. SVMX SFM_UI 
+
+     <img src="images/SfmUi.JPG" width="650" height="400" >
+
    
      Project Description : 
      This component is deployed as a custom action on a record Page ,which can be accessed as a quick action 
@@ -10,7 +13,7 @@ Description of Projects  available in this Repo
    
    
 
-    <img src="images/SfmUi.JPG" width="650" height="400" >
+ 
   
      
  
