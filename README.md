@@ -29,10 +29,12 @@
                              then user will not allowd to save data and User recevies error Notification 
                            
      
-     OOTB functioonality : ->
+     Concept Used  : ->
                              1.  custom LookUp field used 
                              2.  custom types in lightning dataTable (Picklist)
                              3.  custom validation 
+                             4.  use Component as a quick Action 
+                             5.  
  
      Component description : there are  total 4  LWC component Used to Developed the SFM_UI
                              1. WorkOrderCustomUI
