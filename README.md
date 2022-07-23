@@ -1,7 +1,7 @@
 
 Description of Projects  available in this Repo
  
-#1. SVMX SFM_UI 
+# SVMX SFM_UI 
 
 
 # Images : <img src="images/SfmUi.JPG" width="650" height="400" >
@@ -28,13 +28,13 @@ Description of Projects  available in this Repo
                              2. WorkDetailsManager
                              
      static Resources Used : there are One static resource Used 
-                            1. dataSty
+                            1. dataSty  (static Resources/dataSty.css)
      
      
     
     
     
-#2.  Propery Founder :->
+#  Propery Founder :->
      
      
 
