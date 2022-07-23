@@ -1,5 +1,5 @@
 
-# List of Projects available in this Repo
+# List of MINI  Projects available in this Repo
 1. svmx sfm_ui
 2. Property finder
 
