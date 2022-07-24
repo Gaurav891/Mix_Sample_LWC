@@ -54,7 +54,7 @@ export default class WorkOrderCustomUI extends NavigationMixin(LightningElement)
             { label: 'Name', fieldName: 'Name' },
             //added as a part of Modification Check_Attachment__c
             { label: 'check Attachment', fieldName: 'Check_Attachment__c', editable: true,type : 'boolean' },
-            { label: 'Line Quantity', fieldName: 'SVMXC__Actual_Quantity2__c', editable: true },
+            { label: 'Line Quantity', fieldName: 'SVMXC__Actual_Quantity2__c',type :'number', editable: true },
             {
                 label: 'Line Type ', fieldName: 'SVMXC__Line_Type__c', wrapText: true, type: 'picklist', typeAttributes: {
                     placeholder: 'Choose Type', options: [
