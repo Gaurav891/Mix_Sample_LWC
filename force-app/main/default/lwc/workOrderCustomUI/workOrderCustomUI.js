@@ -196,6 +196,7 @@ export default class WorkOrderCustomUI extends NavigationMixin(LightningElement)
      //includes method return true if given argument is Present in Array
      var partsFound = allTypesCollect.includes('Parts')
      console.log('check all lines boolean ',partsFound);
+     //code block to throw error and stop the execution 
      if(partsFound)
      {
         //throw notification 
