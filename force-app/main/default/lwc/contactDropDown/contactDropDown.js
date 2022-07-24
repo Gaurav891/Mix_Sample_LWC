@@ -113,7 +113,10 @@ searchBoxEmpty()
 handleKeyChange(event)
 {
   
-    //make an imperative call 
+    //ToDo : 
+    /*
+      Use trim() on the SearchKey so that space can be neglected by the Backend code 
+    */
 
     console.log('check Space withOut trim ',event.target.value.length);
     console.log('check Space with trim ',event.target.value.trim().length);
