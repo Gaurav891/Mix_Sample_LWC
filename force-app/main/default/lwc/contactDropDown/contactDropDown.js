@@ -161,6 +161,7 @@ handleRowSelection(event)
     var selectedRows=event.detail.selectedRows;
     this.searchKey = selectedRows[0].LastName;
     this.dynamicIcon ='utility:close';
+    //JS object have three attributes 
     const ContactSeletedDetail ={
           'id' :selectedRows[0].Id ,
           'LastName' :selectedRows[0].LastName,
