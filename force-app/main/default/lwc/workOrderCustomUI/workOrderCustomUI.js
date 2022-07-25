@@ -243,6 +243,7 @@ export default class WorkOrderCustomUI extends NavigationMixin(LightningElement)
 
     //code to Update Header Record start
     const Picklist = this.template.querySelector("lightning-combobox").value;
+    //TODO : add iteration so it won't fail when Lightning-input added in marUp 
     const ContactPhoneUpdated = this.template.querySelectorAll("lightning-input")[3].value;
     const woId = this.recordId;
     //use ternaray Operator to get latest contact seclected 
