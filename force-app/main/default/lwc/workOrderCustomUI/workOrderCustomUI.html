@@ -15,8 +15,10 @@
                   </div>
                <lightning-layout>
                 <lightning-layout-item size="6" class="slds-var-m-right_medium">
-                 <lightning-input type ='text' name="WoName"  label="Name" value={WOname} readonly></lightning-input>
-                 <lightning-input type="text" name="WoStatus"  label="Status" value={WOstatus} readonly></lightning-input>
+                 <lightning-input type ='text' name="WoName"  label="Name" value={WOname}
+                  readonly></lightning-input>
+                 <lightning-input type="text" name="WoStatus" 
+                  label="Status" value={WOstatus} readonly></lightning-input>
                  <!--show priority start -->
                  <lightning-combobox
                  name="WorkOrderPriority"
@@ -28,14 +30,16 @@
                  <!--show priority end-->
                     </lightning-layout-item>
                     <lightning-layout-item size="6" class="slds-var-m-left_medium">
-     <lightning-input type="text" name="Acc"  label="Account" value={AccountName} readonly></lightning-input>
+     <lightning-input type="text" name="Acc"  label="Account" value={AccountName} 
+     readonly></lightning-input>
                   <!--contact drop down start based On Account-->
                    <!--add null check what if no account is On Work order field -->
                   <c-contact-drop-down account-id ={AccountId} search-key={contactName} keyy={contactName}
                    oncontactselected ={contactSelectedFromDropDown}
                    oncontactdeselected={clearPhoneField}></c-contact-drop-down>
                   <!--contact drop down end-->
-                  <lightning-input type="text" name="ContactPhone"  label="Contact phone" value={contactPhone} 
+                  <lightning-input type="text" name="ContactPhone"  label="Contact phone" 
+                  value={contactPhone} 
                   readonly></lightning-input>
                     </lightning-layout-item>
                 </lightning-layout>
