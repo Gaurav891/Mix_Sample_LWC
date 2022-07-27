@@ -226,7 +226,7 @@ export default class WorkOrderCustomUI extends NavigationMixin(LightningElement)
         );
          Promise.all(recordUpdatePromises).then(record  => {
             refreshApex(this.ListToRefreshApex);
-           
+           //still false 
             errorOcurredInChildUpdate =false;
        
           });
