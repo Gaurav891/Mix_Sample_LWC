@@ -38,3 +38,7 @@ $RECYCLE.BIN/
 
 # Local environment variables
 .env
+force-app/main/default/lwc/createRecord/createRecord.html
+force-app/main/default/lwc/createRecord/createRecord.js
+force-app/main/default/lwc/createRecord/createRecord.js-meta.xml
+force-app/main/default/lwc/createRecord/__tests__/createRecord.test.js
