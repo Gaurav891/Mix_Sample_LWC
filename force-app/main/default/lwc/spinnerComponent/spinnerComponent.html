@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="Demo spinner">
+
+        <div class="slds-var-m-around_medium">
+            <div if:true={showSpinner}>
+                <lightning-spinner alternative-text={helpText} size={size} 
+                class={spinnerClass} variant={variant} 
+                data-text={helpText}></lightning-spinner>
+            </div>
+            </div>
+    </lightning-card>
+</template>
