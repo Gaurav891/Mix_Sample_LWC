@@ -14,7 +14,7 @@
               
     # Project Description : 
      This component is deployed as a custom action on a record Page ,which can be accessed as a quick action 
-     It is used to update the record and their chid record .
+     It is used to update the record and their child record .
      
     # Functionality  :      
                              As a end User ,user can update the header record and child record 
