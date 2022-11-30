@@ -1,5 +1,5 @@
 
-# List of MINI  Projects available in this Repo
+#   Projects available 
 1. svmx sfm_ui
 
  
